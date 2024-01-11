@@ -9,7 +9,7 @@ DB_NAME = "database.db"
 
 mail = Mail()
 
-app = Flask(__name__, template_folder='View/templates')
+app = Flask(__name__, template_folder='View/templates',  static_folder='View/statics')
 app.config['SECRET_KEY'] = urandom(12)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
