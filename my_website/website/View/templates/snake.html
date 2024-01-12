@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block title %} Snake {% endblock %}
+
+{%block content%}
+<br>
+<h1 style="text-align: center;">My Snake Project</h1>
+<div class="container table-responsive-md">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <tbody>
+		    <tr>
+		      <td>
+                <p style="width:40vw;">
+                   This project is a replica of the classic game Snake. I built it using SDL on C++. 
+                   This project can be found on my github.  
+                </p>
+                <a href="https://github.com/jcw7199/Snake" target="_blank">Github Repository</a>		      
+            </td>
+		      <td>
+                <img class="img-fluid img-thumbnail" src="https://i.ibb.co/HYfBVcM/Gameplay.png" alt="Snake Gameplay">
+            </td>
+		    </tr>
+		  </tbody>
+		</table>   
+    </div>
+  </div>
+</div>
+
+{%endblock%}

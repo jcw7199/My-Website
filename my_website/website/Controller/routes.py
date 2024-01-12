@@ -54,3 +54,7 @@ def deleteSavedPassword(password_id):
     db.session.commit()
     flash("Password deleted!", category="success")
     return render_template('view_passwords.html', user=current_user)
+
+@routes.route('/snake', methods=['GET'])
+def snake():
+    return render_template('snake.html', user=current_user)

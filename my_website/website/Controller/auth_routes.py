@@ -122,13 +122,14 @@ def accountSettings():
         if aform.newFirstName.data != "":
             current_user.firstName = aform.newFirstName.data
             db.session.commit()
+            
         if aform.newLastName.data != "":
             current_user.lastName = aform.newLastName.data
             db.session.commit()
 
         if aform.newEmail.data != "":
             anotherUser = User.query.filter_by(email=aform.newEmail.data).first()
-            if anotherUser:
+            if anotherUser.email != current_user.email:
                 flash("There already is an account registered to this email address.", category="error")
             else:
                 current_user.email = aform.newEmail.data
