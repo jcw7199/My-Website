@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 from .. import db
 
 from website.Model.models import SavedPassword
-from .passwordManager_forms import NewPasswordForm
+from .passwordManager_forms import NewPasswordForm, EditSavedPasswordForm
 
 routes = Blueprint('routes', __name__)
 
@@ -48,6 +48,7 @@ def viewPasswords():
     return render_template('view_passwords.html', user=current_user)
 
 @routes.route('/delete_SavedPassword/<password_id>', methods=['POST', 'DELETE'])
+@login_required
 def deleteSavedPassword(password_id):
     password = SavedPassword.query.filter_by(id=password_id).first()
     db.session.delete(password)
@@ -55,6 +56,27 @@ def deleteSavedPassword(password_id):
     flash("Password deleted!", category="success")
     return render_template('view_passwords.html', user=current_user)
 
+@routes.route('/edit_saved_password/<password_id>', methods=['GET', 'POST'])
+@login_required
+def editSavedPassword(password_id):
+    oldPassword = SavedPassword.query.filter_by(id=password_id).first()
+    editForm = EditSavedPasswordForm()
+    if request.method == 'POST':
+        if editForm.validate_on_submit():
+            oldPassword.password = editForm.password.data
+            oldPassword.username = editForm.username.data
+            oldPassword.websiteAppName = editForm.websiteAppName.data
+            oldPassword.email = editForm.email.data
+            db.session.commit()
+            flash("Password saved!", category='success')
+            return redirect(url_for("routes.viewPasswords"))
+    return render_template('edit_saved_password.html', form=editForm ,user=current_user, passwordData=oldPassword)
+
 @routes.route('/snake', methods=['GET'])
 def snake():
     return render_template('snake.html', user=current_user)
+
+
+@routes.route('/spotify', methods=['GET'])
+def spotify():
+    return render_template('spotify.html', user=current_user)

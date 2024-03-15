@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+{% block title %} Spotify Overlay {% endblock %}
+
+{%block content%}
+<br>
+<h1 style="text-align: center;">My Spotify Overlay Project</h1>
+<div class="container table-responsive-md">
+  <div class="row">
+    <div class="col-12">
+		<table class="table table-image">
+		  <tbody>
+		    <tr>
+		      <td>
+                <p style="width:40vw;">
+                   This project is an overlay for spotify, allowing the user to do other tasks without having to alt tab to adjust spotify playback.
+                   I built it using PyQt5 and pyCurl.
+                   This project can be found on my github.
+                </p>
+                <a href="https://github.com/jcw7199/SpotifyOverlay" target="_blank">Github Repository</a>
+            </td>
+		      <td>
+                <img class="img-fluid img-thumbnail" src="/statics/images/overlay2.png" alt="Picture of overlay while playing a video game">
+            </td>
+		    </tr>
+            <tr>
+                <td>
+                    <img class="img-fluid img-thumbnail" src="/statics/images/overlay.png" alt="Picture of overlay">
+                </td>
+            </tr>
+		  </tbody>
+		</table>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

@@ -32,11 +32,11 @@
                     </td>
                     <td>
                         {% for error in form.newFirstName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.newFirstName(class="form-control", placeholder="Enter new first name") }}
+                        {{ form.newFirstName(class="form-control", autocomplete="off", placeholder="Enter new first name") }}
                     </td>
                     <td>
                         {% for error in form.confirmNewFirstName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.confirmNewFirstName(class="form-control", placeholder="Confirm new first name") }}
+                        {{ form.confirmNewFirstName(class="form-control", autocomplete="off", placeholder="Confirm new first name") }}
                     </td>
                 </tr>
                 <tr>
@@ -44,11 +44,11 @@
                     <td> {{ user.lastName }}</td>
                     <td>
                         {% for error in form.newLastName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.newLastName(class="form-control", placeholder="Enter new last name") }}
+                        {{ form.newLastName(class="form-control", autocomplete="off", placeholder="Enter new last name") }}
                     </td>
                     <td>
                         {% for error in form.confirmNewLastName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.confirmNewLastName(class="form-control", placeholder="Confirm new last name") }}
+                        {{ form.confirmNewLastName(class="form-control", autocomplete="off", placeholder="Confirm new last name") }}
                     </td>
                 </tr>
                 <tr>
@@ -56,11 +56,11 @@
                     <td> {{ user.email }}</td>
                     <td>    
                         {% for error in form.newEmail.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.newEmail(class="form-control", placeholder="Enter new email address") }}
+                        {{ form.newEmail(class="form-control", autocomplete="off", placeholder="Enter new email address") }}
                     </td>
                     <td>
                         {% for error in form.confirmNewEmail.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.confirmNewEmail(class="form-control", placeholder="Confirm new email address") }}
+                        {{ form.confirmNewEmail(class="form-control", autocomplete="off", placeholder="Confirm new email address") }}
                     </td>
                 </tr>
                 <tr>
@@ -68,11 +68,11 @@
                     <td>************</td>
                     <td>
                         {% for error in form.newPassword.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.newPassword(class="form-control", placeholder="Enter new password") }}
+                        {{ form.newPassword(class="form-control", autocomplete="off", placeholder="Enter new password") }}
                     </td>
                     <td>
                         {% for error in form.confirmNewPassword.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
-                        {{ form.confirmNewPassword(class="form-control", placeholder="Confirm new password") }}
+                        {{ form.confirmNewPassword(class="form-control", autocomplete="off", placeholder="Confirm new password") }}
                     </td>
                 </tr>
             </tbod>

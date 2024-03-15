@@ -8,3 +8,10 @@ class NewPasswordForm(FlaskForm):
     email = StringField('Email', validators=[Optional(), Email()])
     password = StringField('Password', validators=[DataRequired()])
     submit = SubmitField('Save Password')
+
+class EditSavedPasswordForm(FlaskForm):
+    websiteAppName = StringField('Website or App name', validators=[DataRequired()]) 
+    username = StringField('Username')
+    email = StringField('Email', validators=[Optional(), Email()])
+    password = StringField('Password', validators=[DataRequired()])
+    submit = SubmitField('Save Password')

@@ -104,6 +104,7 @@ def resetPassword(token):
         return redirect(url_for("auth.login"))      
     else:
         user = User.query.filter_by(email = email).first()
+        login_user(user)
         resetForm = PasswordResetForm()
 
         if resetForm.validate_on_submit():

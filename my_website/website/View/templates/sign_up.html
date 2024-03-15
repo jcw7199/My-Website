@@ -3,6 +3,7 @@
 
 {%block content%}
 <form action="" method="POST">
+    <br>
     <h3 align="center">Sign Up</h3>
     {{ form.csrf_token }}
     {% for category, msg in get_flashed_messages(with_categories=True) %}
@@ -12,7 +13,7 @@
             <p> <font color="green">{{ msg }} </font> </p>
         {% endif%}
     {% endfor %}
-   
+
     <div class="form-group">
         <p>
         {% for error in form.firstName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
@@ -32,7 +33,7 @@
         {{ form.email.label }}
         {{ form.email(class="form-control", placeholder="Enter email") }}
     </p>
-    
+
     <p>
         {% for error in form.confirmEmail.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
         {{ form.confirmEmail.label }}
@@ -44,7 +45,7 @@
         {{ form.password.label }}
         {{ form.password(class="form-control", placeholder="Enter password") }}
     </p>
-   
+
 
     <p>
         {% for error in form.confirmPassword.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
@@ -56,5 +57,5 @@
     <p>
         {{ form.submit(class="btn btn-primary") }}
     </p>
-</form>            
+</form>
 {%endblock%}
