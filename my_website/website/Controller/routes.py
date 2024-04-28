@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from unicodedata import category
-from flask import Blueprint, render_template, request, flash, redirect, url_for 
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .. import db
 
@@ -15,7 +15,11 @@ def home():
 
 @routes.route('/resume')
 def resume():
-    return render_template("resume.html", user=current_user)    
+    return render_template("resume.html", user=current_user)
+
+@routes.route('/cover_letter')
+def coverLetter():
+    return render_template("cover_letter.html", user=current_user)
 
 @routes.route('/password_manager')
 def passwordManager():
@@ -33,7 +37,7 @@ def savePassword():
                 websiteAppName = newPassForm.websiteAppName.data,
                 username = newPassForm.username.data,
                 email = newPassForm.email.data,
-                password = newPassForm.password.data                
+                password = newPassForm.password.data
             )
 
             db.session.add(newPassword)
@@ -41,13 +45,13 @@ def savePassword():
             flash("Password saved!", category='success')
             return redirect(url_for("routes.passwordManager"))
     return render_template("save_password.html", form=newPassForm, user=current_user)
-    
+
 @routes.route('/view_passwords', methods=['GET', 'POST'])
 @login_required
 def viewPasswords():
     return render_template('view_passwords.html', user=current_user)
 
-@routes.route('/delete_SavedPassword/<password_id>', methods=['POST', 'DELETE'])
+@routes.route('/delete_SavedPassword/<password_id>', methods=['POST'])
 @login_required
 def deleteSavedPassword(password_id):
     password = SavedPassword.query.filter_by(id=password_id).first()

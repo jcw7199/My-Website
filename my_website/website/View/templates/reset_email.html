@@ -8,7 +8,7 @@
         <br/>
         <h3 align="center">Reset Email</h3>
             {{ form.csrf_token }}
-        
+
         <p>
             {% for error in form.newEmail.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
             {{ form.newEmail.label }}
@@ -24,7 +24,7 @@
         <p>
             {{ form.submit(class="btn btn-primary") }}
         </p>
-        
+
     </form>
 {% else %}
     <h3>

@@ -30,7 +30,7 @@ def sign_up():
                             email = sform.email.data, 
                             firstName = sform.firstName.data, 
                             lastName = sform.lastName.data, 
-                            password=generate_password_hash(sform.password.data, method='sha256')
+                            password=generate_password_hash(sform.password.data, method='pbkdf2:sha256')
                             ) 
                 db.session.add(newUser)
                 db.session.commit()
@@ -81,7 +81,6 @@ def send_mail(user):
     '''
     mail.send(msg)
 
-
 @auth.route('/forgot_password', methods=['GET', 'POST'])
 def forgotPassword():
     forgotForm = ForgotForm()
@@ -108,7 +107,7 @@ def resetPassword(token):
         resetForm = PasswordResetForm()
 
         if resetForm.validate_on_submit():
-            user.password = generate_password_hash(resetForm.newPassword.data, method='sha256')
+            user.password = generate_password_hash(resetForm.newPassword.data, method='pbkdf2:sha256')
             db.session.commit()
             flash("Password reset!", category="success")
             return redirect(url_for("auth.login"))
@@ -130,16 +129,30 @@ def accountSettings():
 
         if aform.newEmail.data != "":
             anotherUser = User.query.filter_by(email=aform.newEmail.data).first()
-            if anotherUser.email != current_user.email:
-                flash("There already is an account registered to this email address.", category="error")
+            if anotherUser != None:
+                if anotherUser.email != current_user.email:
+                    flash("There already is an account registered to this email address.", category="error")
             else:
                 current_user.email = aform.newEmail.data
                 db.session.commit()
 
         if aform.newPassword.data != "":
-            current_user.password =  generate_password_hash(aform.newPassword.data, method='sha256')        
+            current_user.password =  generate_password_hash(aform.newPassword.data, method='pbkdf2:sha256')        
             db.session.commit()
         
         flash("Account settings changed!", category="success")
 
     return render_template('account_settings.html', form=aform, user=current_user)
+
+@login_required
+@auth.route('/delete_account', methods=['POST'])
+def deleteAccount():
+    if request.method == 'POST':
+        user = current_user
+        for password in user.savedPasswords:
+            db.session.delete(password)
+        db.session.delete(user)
+        db.session.commit()
+    
+    flash("Account deleted.")
+    return redirect(url_for("routes.home"))

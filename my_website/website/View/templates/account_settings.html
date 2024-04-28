@@ -7,28 +7,28 @@
 <h3 align="center">Account Settings</h3>
 <br>
 <h5 align="center">
-    Input the new account info into the form below. 
-    You can change one or more at the same time. 
+    Input the new account info into the form below.
+    You can change one or more at the same time.
     You may leave blank what you wish to remain the same.
 </h5>
-<form action="" method="POST">
+<form action="" method="POST" class="row-cols-lg-auto">
     {{ form.csrf_token }}
 
-    <table class="table table-dark table-striped table-bordered">
-        
-        <br/>    
+    <table class="table table-dark table-striped table-bordered table-responsive">
+
+        <br/>
             <thead>
                 <th>Setting to change</th>
                 <th>Current</th>
                 <th>Change</th>
                 <th>Confirm Changes</th>
-                
+
             </thead>
             <tbody>
                 <tr>
                     <td>First Name</td>
                     <td>
-                        <p>{{ user.firstName}}</p>                   
+                        <p>{{ user.firstName}}</p>
                     </td>
                     <td>
                         {% for error in form.newFirstName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
@@ -54,7 +54,7 @@
                 <tr>
                     <td>Email</td>
                     <td> {{ user.email }}</td>
-                    <td>    
+                    <td>
                         {% for error in form.newEmail.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
                         {{ form.newEmail(class="form-control", autocomplete="off", placeholder="Enter new email address") }}
                     </td>
@@ -77,12 +77,16 @@
                 </tr>
             </tbod>
             <p>
-        
+
             </p>
     </table>
-    <p align="center"1>{{ form.submit(class="btn btn-primary") }}</p>
-
+    <p align="center">{{ form.submit(class="btn btn-primary") }}</p>
 </form>
+<form action="{{url_for('auth.deleteAccount')}}" method="post">
+    <p align="center"><input class="button btn btn-danger" type="submit" value="Delete Account"></p>
+</form>
+<br>
+<br>
 {%else%}
 <br>
 <br>
