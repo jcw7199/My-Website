@@ -69,25 +69,22 @@ def logout():
     logout_user()
     return redirect(url_for("auth.login"))
 
-def send_mail(user):
-    token = user.get_token()
-    msg = Message('Password Reset Request', recipients=[user.email], sender='jordancw7199@gmail.com')
-    msg.body = f''' To reset your password, please follow the link below.
-
-        {url_for('auth.resetPassword', token=token, _external=True)}
-        This link will expire in 10 minutes.
-        
-        If you didn't send a request to reset your password, please ignore this message.
-    '''
-    mail.send(msg)
-
 @auth.route('/forgot_password', methods=['GET', 'POST'])
 def forgotPassword():
     forgotForm = ForgotForm()
     if forgotForm.validate_on_submit():
         user = User.query.filter_by(email=forgotForm.email.data).first()
         if user:
-            send_mail(user)
+            token = user.get_token()
+            msg = Message('Password Reset Request', recipients=[user.email], sender='jordancw7199@gmail.com')
+            msg.body = f''' To reset your password, please follow the link below.
+
+                {url_for('auth.resetPassword', token=token, _external=True)}
+                This link will expire in 10 minutes.
+                
+                If you didn't send a request to reset your password, please ignore this message.
+            '''
+            mail.send(msg)
             flash("Account found! Check email to reset password.")
             return redirect(url_for("routes.home"))
         else:

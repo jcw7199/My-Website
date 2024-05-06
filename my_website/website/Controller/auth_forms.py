@@ -27,7 +27,8 @@ class PasswordResetForm(FlaskForm):
     newPassword = PasswordField('New Password', validators=[DataRequired(message="Data required!"), EqualTo('confirmNewPassword', message="Passwords must match")])
     confirmNewPassword = PasswordField('Confirm Passowrd', validators=[DataRequired(message="Data required!"), EqualTo('newPassword', message="Passwords must match")])
     submit = SubmitField('Save new Password')
-Email
+
+
 class AccountResetForm(FlaskForm):
     newFirstName = StringField('First name', validators=[EqualTo('confirmNewFirstName', message="First names must match")])
     newLastName = StringField('Last name', validators=[EqualTo('confirmNewLastName', message="Last names must match")])

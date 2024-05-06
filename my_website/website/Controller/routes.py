@@ -3,9 +3,12 @@ from unicodedata import category
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from .. import db
+from .. import mail
+from flask_mail import Message
 
 from website.Model.models import SavedPassword
 from .passwordManager_forms import NewPasswordForm, EditSavedPasswordForm
+from .forms import ContactMeForm
 
 routes = Blueprint('routes', __name__)
 
@@ -84,3 +87,15 @@ def snake():
 @routes.route('/spotify', methods=['GET'])
 def spotify():
     return render_template('spotify.html', user=current_user)
+
+@routes.route('/contact_me', methods=['GET', 'POST'])
+def contactMe():
+    contactForm = ContactMeForm()
+
+    if request.method == 'POST':
+        if contactForm.validate_on_submit():
+            msg = Message('Contact Me', recipients=['jordancw7199@gmail.com'], sender=contactForm.email.data)
+            msg.body = contactForm.message.data + " " + " sent by " + contactForm.firstName.data + " " + contactForm.lastName.data + ". Email: " + contactForm.email.data
+            mail.send(msg)
+            flash("Message sent!", category='success')
+    return render_template('contact_me.html', user=current_user, form=contactForm)

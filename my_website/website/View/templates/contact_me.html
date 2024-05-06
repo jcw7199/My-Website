@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} Contact Me {% endblock %}
+
+{%block content%}
+<br>
+<h5 align="center">Phone: 646-919-0846</h5>
+<h5 align="center">Email: jordancw7199@gmail.com</h5>
+<h5 align="center"> <a target="_blank" href="//www.linkedin.com/in/jordan-williams-3b606a19b/">LinkedIn</a></h5>
+<h5 align="center"><a target="_blank" href="https://github.com/jcw7199">Github</a></h5>
+
+<form action="" method="POST">
+    <br/>
+    <h1 align="center" style="text-align: center;">Contact Me</h1>
+    {{ form.csrf_token }}
+
+    <p>
+        {% for error in form.firstName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
+        {{ form.firstName.label }}
+        {{ form.firstName(class="form-control", placeholder="Enter first name") }}
+    </p>
+
+    <p>
+        {% for error in form.lastName.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
+        {{ form.lastName.label }}
+        {{ form.lastName(class="form-control", placeholder="Enter last name") }}
+    </p>
+
+    <p>
+        {% for error in form.email.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
+        {{ form.email.label }}
+        {{ form.email(class="form-control", placeholder="Enter email") }}
+    </p>
+
+    <p>
+        {% for error in form.message.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
+        {{ form.message.label }}
+        {{ form.message(class="form-control", rows='10',cols='50', placeholder="Enter message here") }}
+    </p>
+
+    <p>
+        {{ form.submit(class="btn btn-primary") }}
+    </p>
+
+</form>
+
+{%endblock%}
