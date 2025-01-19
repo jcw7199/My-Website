@@ -40,8 +40,9 @@ def contactMe():
 
     if request.method == 'POST':
         if contactForm.validate_on_submit():
-            msg = Message('Contact Me', recipients=['jordancw7199@gmail.com'], sender=contactForm.email.data)
+            msg = Message(contactForm.subject.data, recipients=['jordancw7199@gmail.com', contactForm.email.data], sender=contactForm.email.data)
+            
             msg.body = contactForm.message.data + " " + " sent by " + contactForm.firstName.data + " " + contactForm.lastName.data + ". Email: " + contactForm.email.data
             mail.send(msg)
-            flash("Message sent!", category='success')
+            flash("Message sent! A copy of your message has been emailed to you as well.", category='success')
     return render_template('contact_me.html', user=current_user, form=contactForm)

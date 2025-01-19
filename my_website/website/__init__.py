@@ -4,17 +4,18 @@ from os import path, urandom
 from flask_login import LoginManager
 from flask_mail import Mail
 
-db = SQLAlchemy()
+
 DB_NAME = "database.db"
 
-mail = Mail()
 
 app = Flask(__name__, template_folder='View/templates',  static_folder='View/statics')
 app.config['SECRET_KEY'] = urandom(12)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
+db = SQLAlchemy(app=app)
 
-db.init_app(app)
+mail = Mail()
+#db.init_app(app)
 
 from .Controller.routes import routes
 from .Controller.auth_routes import auth
@@ -36,10 +37,11 @@ def load_user(id):
 
 
 
-def create_database(app):
+def create_database():
     if not path.exists('website/' + DB_NAME):
-        db.create_all(app=app)
-        print("created database")
+        with app.app_context():
+            db.create_all()
+            print("created database")
 
 def create_mail():
 
@@ -53,5 +55,5 @@ def create_mail():
 
     mail.init_app(app)
 
-create_database(app)
+create_database()
 create_mail()
