@@ -1,12 +1,87 @@
 body
 {
-    background-color: Gainsboro;
+    background-color: DarkSlateGrey;
+    color: yellow;
     margin-left: 0;
     padding-left: 0;
+
+}
+
+input, select, textarea
+{
+    color: black;
+}
+
+.bg-image{
+
+    position: fixed;
+    margin-left:auto;
+    margin-right:auto;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: inline;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/office_background.jfif");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.form-control *
+{
+    color: black;
+}
+
+.nav-link a:hover{
+
+
+    color: blue;
+
+
+}
+
+.container a
+{
+    color: aqua;
+    text-decoration: 2px underline aqua;
 }
 
 .aboutMe
 {
-    margin-left: -200px;
+    word-wrap: break-word;
+    width: 40vw;
     margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+.selfie
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    height: 20%;
+    display: block;
+
+}
+.snake_info{
+    margin-left: auto;
+    margin-right: auto;
+    word-wrap: break-word;
+    width: 40vw;
+
+}
+.snake_center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

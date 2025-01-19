@@ -37,8 +37,8 @@ def load_user(id):
 
 
 def create_database(app):
-    with app.app_context():
-        db.create_all()
+    if not path.exists('website/' + DB_NAME):
+        db.create_all(app=app)
         print("created database")
 
 def create_mail():

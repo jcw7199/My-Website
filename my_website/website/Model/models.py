@@ -22,16 +22,9 @@ class User(db.Model, UserMixin):
         error = None
         user_email = None
         try:
-            user_email = serial.loads(token, max_age=600)['user_email']    
+            user_email = serial.loads(token, max_age=600)['user_email']
         except:
                 error = "Reset password token expired."
-        
+
         return (user_email, error)
 
-class SavedPassword(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    websiteAppName = db.Column(db.String(10000))
-    username =  db.Column(db.String(10000)) 
-    email = db.Column(db.String(10000))
-    password = db.Column(db.String(10000))

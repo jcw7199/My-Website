@@ -1,31 +1,22 @@
-
+<!DOCTYPE html>
 {% extends "base.html" %}
 {% block title %} Snake {% endblock %}
 
 {%block content%}
 <br>
 <h1 style="text-align: center;">My Snake Project</h1>
-<div class="container table-responsive-md">
-  <div class="row">
-    <div class="col-12">
-		<table class="table table-image">
-		  <tbody>
-		    <tr>
-		      <td>
-                <p style="width:40vw;">
-                   This project is a replica of the classic game Snake. I built it using SDL on C++.
-                   This project can be found on my github.
-                </p>
-                <a href="https://github.com/jcw7199/Snake2" target="_blank">Github Repository</a>
-            </td>
-		      <td>
-                <img class="img-fluid img-thumbnail" src="/statics/images/gameplay3.png" alt="Snake Gameplay">
-            </td>
-		    </tr>
-		  </tbody>
-		</table>
-    </div>
-  </div>
-</div>
+
+
+            <p class="snake_info aboutMe" style="text-align: center;" border="0px solid">
+               This project is a replica of the classic game Snake. I built it using Simple DirectMedia Layer (SDL), a library used to build graphic applications with C++.
+               This project can be found on my github.
+               <a href="https://github.com/jcw7199/Snake2" target="_blank">Github Repository</a>
+            </p>
+            <p>
+                <video style="width:70vw; margin-left:auto; margin-right: auto;" class="img-fluid img-thumbnail snake_center" controls>
+                    <source src='/statics/videos/Snake Demo Video.mp4' type ='video/mp4'>
+                </video>
+            </p>
+
 
 {%endblock%}
