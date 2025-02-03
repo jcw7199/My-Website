@@ -3,14 +3,15 @@
 
 {%block content%}
 <br>
+<div id="contact_info" class="textbg">
 <h5 align="center">Phone: 646-919-0846</h5>
-<h5 align="center">Email: jordancw7199@gmail.com</h5>
+<h5 align="center">Email: <a target="_blank" href="mailto:jordancw7199@gmail.com">jordancw7199@gmail.com</a></h5>
 <h5 align="center"> <a target="_blank" href="https://www.linkedin.com/in/jordan-williams-was-taken/">LinkedIn</a></h5>
 <h5 align="center"><a target="_blank" href="https://github.com/jcw7199">Github</a></h5>
-
+</div>
 <form action="" method="POST">
     <br/>
-    <h1 align="center" style="text-align: center;">Contact Me</h1>
+    <h1 align="center" class="textbg" style="text-align: center;">Contact Me</h1>
     {{ form.csrf_token }}
 
     <p>
@@ -30,7 +31,7 @@
         {{ form.email.label }}
         {{ form.email(class="form-control", placeholder="Email") }}
     </p>
-    
+
     <p>
         {% for error in form.subject.errors %} <p> <font color="red">{{ error }} </font> </p> {% endfor %}
         {{ form.subject.label }}
