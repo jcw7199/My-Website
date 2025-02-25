@@ -1,24 +1,14 @@
-import base64
 from dataclasses import dataclass
-import hashlib
-import os
-import random
 from unicodedata import category
-import webbrowser
-from flask import Blueprint, json, render_template, request, flash, redirect, url_for, jsonify, session, render_template_string
+from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify, session, render_template_string
 from flask_login import login_required, current_user
 from .. import db
 from .. import mail
-import socket
 
 from flask_mail import Message
 from ..Model.models import SpotifyAuthCode
 from .forms import ContactMeForm
-import pycurl
-from io import BytesIO
-import urllib.parse
 
-import requests as req
 
 routes = Blueprint('routes', __name__)
 
