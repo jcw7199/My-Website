@@ -1,11 +1,12 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_migrate import Migrate
 
-
-DB_NAME = "database.db"
+DB_NAME = os.path.join(os.path.dirname(__file__), "database.db")
 
 
 app = Flask(__name__, template_folder='View/templates',  static_folder='View/statics')
@@ -13,6 +14,7 @@ app.config['SECRET_KEY'] = urandom(12)
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
 
 db = SQLAlchemy(app=app)
+migrate = Migrate()
 
 mail = Mail()
 #db.init_app(app)
@@ -37,11 +39,12 @@ def load_user(id):
 
 
 
-def create_database():
+def create_database():    
     if not path.exists('website/' + DB_NAME):
         with app.app_context():
             db.create_all()
             print("created database")
+    
 
 def create_mail():
 
@@ -57,3 +60,5 @@ def create_mail():
 
 create_database()
 create_mail()
+
+
