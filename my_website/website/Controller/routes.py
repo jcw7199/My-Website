@@ -2,18 +2,13 @@ from dataclasses import dataclass
 from unicodedata import category
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify, session, render_template_string
 from flask_login import login_required, current_user
-from .. import db
-from .. import mail
+from myapp import db, mail
 
 from flask_mail import Message
-from ..Model.models import SpotifyAuthCode
+from Model.models import SpotifyAuthCode
 from .forms import ContactMeForm
 
-
 routes = Blueprint('routes', __name__)
-
-
-
 
 @routes.route('/')
 def home():
@@ -59,11 +54,6 @@ def storeSpotifyAuthCode():
         for code in oldCodes:
             print("DELETING OLD CODE")
             db.session.delete(code)
-
-
-
-
-
 
     if auth_code != None:
         newCode = SpotifyAuthCode(code=auth_code, ipAddr=ip)
@@ -111,7 +101,6 @@ def getSpotifyAuthCode():
     if count > 0:
 
         auth_code = SpotifyAuthCode.query.filter_by(ipAddr=ip).first().code
-
         oldCodes = SpotifyAuthCode.query.filter_by(ipAddr=ip).all()
 
         for code in oldCodes:
@@ -140,3 +129,4 @@ def contactMe():
             mail.send(msg)
             flash("Message sent! A copy of your message has been emailed to you as well.", category='success')
     return render_template('contact_me.html', user=current_user, form=contactForm)
+

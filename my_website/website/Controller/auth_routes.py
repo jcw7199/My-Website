@@ -1,10 +1,9 @@
 from xml.dom.domreg import registered
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from ..Model.models import User
+from Model.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from .auth_forms import LoginForm, SignUpForm, ForgotForm, PasswordResetForm, AccountResetForm
-from .. import db
-from .. import mail
+from myapp import db, mail
 from flask_login import login_required, login_user, logout_user, current_user
 from flask_mail import Message
 
